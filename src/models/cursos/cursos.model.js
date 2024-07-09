@@ -22,7 +22,7 @@ const cursos = new Schema({
     categoria:{
         type: String,
         required: true,
-        enum:['niños', 'jovenes', 'adultos'],
+        enum:['ninos', 'jovenes', 'adultos'],
         trim:true
     },
     tipoCurso:{
