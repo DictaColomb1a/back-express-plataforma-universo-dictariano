@@ -45,6 +45,5 @@ app.use("/cursos", cursoRouter);
 
 //SERVER
 
-app.listen(process.env.PORT, () =>{
-    console.log("Aplicacion corriendo correctamente en el puerto 3000");
-});
+const PORT = process.env.PORT || 9000
+app.listen(PORT, () =>console.log(`server corriendo correctamente en el puerto ${PORT}`))
