@@ -31,7 +31,7 @@ app.use(express.json());
 //importar routes
 
 const cursoRouter = require("./src/routes/cursos/cursos.routes");
-
+const galaxiaRouter = require("./src/routes/galaxia/galaxia");
 //RUTAS ESTATICAS
 app.use("/", express.static(__dirname + "/public"));
 
@@ -40,7 +40,7 @@ app.use("/", express.static(__dirname + "/public"));
 //RUTAS DINAMICAS#####################
 
 app.use("/cursos", cursoRouter);
-
+app.use("/galaxia", galaxiaRouter);
 
 
 //SERVER
