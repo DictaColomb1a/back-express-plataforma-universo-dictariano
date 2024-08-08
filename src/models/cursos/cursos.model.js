@@ -1,25 +1,25 @@
 const {Schema, model} = require('mongoose')
 
 const cursos = new Schema({
-    nombre:{
+    nombreCurso:{
         type : String,
         required : true,
     },
-    descripcion:{
+    descripcionCurso:{
         type: String,
         required: true
     },
-    fechaPublicacion:{
+    fechaPublicacionCurso:{
         type: Date,
         required: true,
         trim: true
     },
-    texturaplaneta:{
+    texturaplanetaCurso:{
         type: String,
         required: true,
         trim: true
     },
-    categoria:{
+    categoriaCurso:{
         type: String,
         required: true,
         enum:['ninos', 'jovenes', 'adultos'],
@@ -35,7 +35,7 @@ const cursos = new Schema({
         required:true,
         trim: true
     },
-    estado: {
+    estadoCurso: {
             type: String,
             required: true,
             enum: ['activo', 'inactivo'],
@@ -50,7 +50,11 @@ const cursos = new Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    planetas: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Planeta'
+    }]
 });
 
 module.exports = model("Cursos", cursos)
