@@ -1,40 +1,42 @@
 const {Schema, model} = require('mongoose')
 
 
-const galaxia = new Schema({
-    nombreGalaxia:{
+const planeta = new Schema({
+    nombreplaneta:{
         type : String,
         required : true,
     },
-    descripcionGalaxia:{
+    descripcionplaneta:{
         type: String,
         required: true
     },
-    fechaCreacion:{
+    fechaCreacionplaneta:{
         type: Date,
         required: true,
         trim: true
     },
-    estadoGalaxia:{
+    estadoplaneta:{
         type: String,
         required: true,
         enum: ['activo', 'inactivo'],
         trim: true
     },
-    texturaGalaxia:{
+    texturaPlaneta:{
         type: String,
         required: true,
         trim: true
     },
-    coordenadasGalaxia:{
+    coordenadasPlaneta:{
         type: String,
         requiered: true
     },
-    planetas: [{
-        type:Schema.Types.ObjectId,
-        ref: 'Planeta'
-    }],
+    galaxia: {
+        type: Schema.Types.ObjectId,
+        ref: 'Galaxia',
+        required: true
+    }
+
 
 });
 
-module.exports = model("Galaxia", galaxia)
+module.exports = model("Planeta", planeta)

@@ -1,16 +1,40 @@
-const Galaxia = require("../../models/galaxia/galaxia.model")
+const Galaxia = require("../../models/galaxia/galaxia.model");
 
-const mostrarGalaxia =  async (req, res)=>{
+
+const mostrarGalaxias =  async (req, res)=>{
     try {
-        const cursos = await Galaxia.find().sort({createdAt: -1});
+        const galaxiasExistentes = await Galaxia.find().sort({createdAt: -1});
 
         return res.json(
-            cursos
+            galaxiasExistentes
         );
     } catch (error) {
         return res.status(404).json({
             ok: false,
-            msg: "Galaxia no encontrado"
+            msg: "galaxias no encontradas"
+        });
+    }
+};
+
+const mostrarGalaxiasConPlanetas = async (req, res) => {
+    try {
+        const galaxias = await Galaxia.find().populate('planetas')
+
+        if (!galaxias.length) {
+            return res.status(404).json({
+                ok: false,
+                msg: "No se encontraron galaxias"
+            });
+        }
+
+        return res.status(200).json({
+            ok: true,
+            galaxias
+        });
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            msg: "Error al obtener las galaxias"
         });
     }
 };
@@ -41,10 +65,10 @@ const buscarGalaxiaNombre = async (req, res) => {
 
 const crearGalaxia =  async (req, res)=>{
     const id = req.uid;
-    const {nombre, descripcion, fechaCreacion } = req.body;
+    const {nombreGalaxia, descripcionGalaxia, fechaCreacion, estadoGalaxia, texturaGalaxia, coordenadasGalaxia } = req.body;
 
     try {
-        let galaxia = await Galaxia.findOne({nombre});
+        let galaxia = await Galaxia.findOne({nombreGalaxia});
 
         if (galaxia) {
             return res.status(501).json({
@@ -53,7 +77,7 @@ const crearGalaxia =  async (req, res)=>{
             });
         }
 
-        const nuevoGalaxia = new Galaxia({nombre, descripcion, fechaCreacion});
+        const nuevoGalaxia = new Galaxia({nombreGalaxia, descripcionGalaxia, fechaCreacion,  estadoGalaxia, texturaGalaxia, coordenadasGalaxia});
         await nuevoGalaxia.save();
         res.status(200).json({
             ok:true,
@@ -105,5 +129,6 @@ const eliminarGalaxia =  async (req, res)=>{
 };
 
 module.exports = {
-    mostrarGalaxia, buscarGalaxiaNombre, crearGalaxia, actualizarGalaxia, eliminarGalaxia
+    mostrarGalaxias, mostrarGalaxiasConPlanetas, buscarGalaxiaNombre, crearGalaxia, actualizarGalaxia, eliminarGalaxia
 }
+    
