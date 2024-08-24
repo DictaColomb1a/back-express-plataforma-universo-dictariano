@@ -33,6 +33,8 @@ app.use(express.json());
 const cursoRouter = require("./src/routes/cursos/cursos.routes");
 const galaxiaRouter = require("./src/routes/galaxia/galaxia");
 const planetaRouter = require("./src/routes/planeta/planeta.routes");
+const menuRouter = require('./src/routes/menuRoutes'); 
+
 //RUTAS ESTATICAS
 app.use("/", express.static(__dirname + "/public"));
 
@@ -43,7 +45,7 @@ app.use("/", express.static(__dirname + "/public"));
 app.use("/cursos", cursoRouter);
 app.use("/galaxia", galaxiaRouter);
 app.use("/planeta", planetaRouter);
-
+app.use("/api", menuRouter);
 
 //SERVER
 
