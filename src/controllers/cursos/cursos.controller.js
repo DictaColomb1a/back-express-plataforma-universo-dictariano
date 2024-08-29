@@ -14,6 +14,8 @@ const mostrarCursos =  async (req, res)=>{
         });
     }
 };
+
+
 const buscarCursoNombre = async (req, res) => {
     const { nombre } = req.params;
 
@@ -94,7 +96,7 @@ const crearCurso =  async (req, res)=>{
 
     const {nombre, descripcion, fechaPublicacion, texturaplaneta, categoria, tipoCurso, idioma, estado, precio, miniatura } = req.body;
 
-    
+
     try {
         let cursos = await Cursos.findOne({nombre});
 
