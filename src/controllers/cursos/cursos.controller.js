@@ -14,6 +14,8 @@ const mostrarCursos =  async (req, res)=>{
         });
     }
 };
+
+
 const buscarCursoNombre = async (req, res) => {
     const { nombre } = req.params;
 
@@ -91,8 +93,9 @@ const mostrarCursosadultos = async (req, res) => {
 };
 
 const crearCurso =  async (req, res)=>{
-    const id = req.uid;
+
     const {nombre, descripcion, fechaPublicacion, texturaplaneta, categoria, tipoCurso, idioma, estado, precio, miniatura } = req.body;
+
 
     try {
         let cursos = await Cursos.findOne({nombre});
@@ -103,14 +106,19 @@ const crearCurso =  async (req, res)=>{
                 msg:"Curso ya Registrado"
             });
         }
-
+        
         const nuevoCurso = new Cursos({nombre, descripcion, fechaPublicacion, texturaplaneta, categoria, tipoCurso, idioma, estado, precio, miniatura});
+        
         await nuevoCurso.save();
+
+        
         res.status(200).json({
             ok:true,
             msg:"Curso Creado",
             nuevoCurso
         });
+
+
     } catch (error) {
         res.json({
             ok:false,
@@ -118,6 +126,8 @@ const crearCurso =  async (req, res)=>{
         });
     }
 };
+
+
 const actualizarCurso =  async (req, res)=>{
     const {id} = req.params;
     const {nombre, descripcion, fechaPublicacion, texturaplaneta, categoria, tipoCurso, idioma, estado, precio, miniatura} = req.body;

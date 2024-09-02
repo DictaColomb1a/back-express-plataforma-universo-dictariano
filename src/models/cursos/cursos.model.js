@@ -1,52 +1,52 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require('mongoose')
 
 const cursos = new Schema({
-    nombreCurso:{
-        type : String,
-        required : true,
+    nombreCurso: {
+        type: String,
+        required: true,
     },
-    descripcionCurso:{
+    descripcionCurso: {
         type: String,
         required: true
     },
-    fechaPublicacionCurso:{
+    fechaPublicacionCurso: {
         type: Date,
         required: true,
         trim: true
     },
-    texturaplanetaCurso:{
+    texturaplanetaCurso: {
         type: String,
         required: true,
         trim: true
     },
-    categoriaCurso:{
+    categoriaCurso: {
         type: String,
         required: true,
-        enum:['ninos', 'jovenes', 'adultos'],
-        trim:true
+        enum: ['ninos', 'jovenes', 'adultos'],
+        trim: true
     },
-    tipoCurso:{
-        type:String,
+    tipoCurso: {
+        type: String,
         required: true,
         trim: true
     },
-    idioma:{
+    idioma: {
         type: String,
-        required:true,
+        required: true,
         trim: true
     },
     estadoCurso: {
-            type: String,
-            required: true,
-            enum: ['activo', 'inactivo'],
-            trim: true,
+        type: String,
+        required: true,
+        enum: ['activo', 'inactivo'],
+        trim: true,
     },
-    precio:{
+    precio: {
         type: Number,
         required: true,
         trim: true,
     },
-    miniatura:{
+    miniatura: {
         type: String,
         required: true,
         trim: true
