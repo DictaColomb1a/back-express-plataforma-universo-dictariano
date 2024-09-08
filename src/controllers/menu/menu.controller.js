@@ -1,10 +1,22 @@
-const Menu = require('../models/Menu');
+// controllers/menu/menuController.js
+const Menu = require('../../models/menu/menu.model');
 
-exports.getMenus = async (req, res) => {
+// Obtener todos los menús
+const getMenus = async (req, res) => {
   try {
     const menus = await Menu.find();
-    res.json({ ok: true, menus });
-  } catch (err) {
-    res.status(500).json({ ok: false, error: err.message });
+    res.json({
+      ok: true,
+      menus,
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      message: 'Error al obtener los menús',
+    });
   }
+};
+
+module.exports = {
+  getMenus,
 };

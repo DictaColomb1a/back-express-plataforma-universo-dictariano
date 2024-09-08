@@ -1,9 +1,9 @@
+// routes/menu/menu.routes.js
 const express = require('express');
-const { getMenus } = require('../controllers/menuController');
-
+const { getMenus } = require('../../controllers/menu/menu.controller');
 const router = express.Router();
 
-// Ruta para obtener los menús
-router.get('/menus', getMenus);
+// Ruta para obtener todos los menús
+router.get('/', getMenus);
 
 module.exports = router;

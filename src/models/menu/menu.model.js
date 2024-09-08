@@ -1,18 +1,20 @@
-const { Schema, model } = require('mongoose');
+// models/menu/menu.model.js
+const mongoose = require('mongoose');
 
-const SubmenuSchema = new Schema({
-  submenu: String,
-  ruta: String,
+const submenuSchema = new mongoose.Schema({
+  submenu: { type: String, required: true },
+  ruta: { type: String, required: true },
 });
 
-const MenuSchema = new Schema({
-  menu: String,
-  ruta: String,
-  submenus: [SubmenuSchema],
+const menuSchema = new mongoose.Schema({
+  menu: { type: String, required: true },
+  ruta: { type: String, default: '' },
+  submenus: [submenuSchema],
   createdAt: { type: Date, default: Date.now },
-  state: { type: Boolean, default: true }
+  state: { type: Boolean, default: true },
 });
 
-const Menu = model('Menu', MenuSchema);
+const Menu = mongoose.model('Menu', menuSchema);
 
 module.exports = Menu;
+
